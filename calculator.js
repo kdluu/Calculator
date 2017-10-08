@@ -15,22 +15,22 @@ class Calculator {
           button7 : {id: "button7", type: "button", value: 7, onclick:""},
           button8 : {id: "button8", type: "button", value: 8, onclick:""},
           button9 : {id: "button9", type: "button", value: 9, onclick:""},
-          addittion : {id: "addittion", type: "button", value: '+', onclick:""},
+          addittion : {id: "addittion", type: "button", value: ' + ', onclick:""},
 
           button4 : {id: "button4", type: "button", value: 4, onclick:""},
           button5 : {id: "button5", type: "button", value: 5, onclick:""},
           button6 : {id: "button6", type: "button", value: 6, onclick:""},
-          substraction : {id: "substraction", type: "button", value:'-', onclick:""},
+          substraction : {id: "substraction", type: "button", value:' - ', onclick:""},
 
           button1 : {id: "button1", type: "button", value: 1, onclick:""},
           button2 : {id: "button2", type: "button", value: 2, onclick:""},
           button3 : {id: "button3", type: "button", value: 3, onclick:""},
-          multiply : {id: "multiply", type: "button", value:'*', onclick:""},
+          multiply : {id: "multiply", type: "button", value:' * ', onclick:""},
 
           button0 : {id: "button0", type: "button", value: 0, onclick:""},
           point : {id: "point", type: "button", value: '.', onclick:""},
-          equals : {id: "equals", type: "button", value: '=', onclick:""},
-          division : {id: "division", type: "button", value:'/', onclick:""},
+          equals : {id: "equals", type: "button", value: '=', onclick:"answer()"},
+          division : {id: "division", type: "button", value:' / ', onclick:""},
 
           clear : {id: "clear", type: "button", value: 'C', onclick:""},
           memrecall : {id: "memrecall", type: "button", value: 'MR', onclick:""},
@@ -48,6 +48,7 @@ class Calculator {
           viewClickHandler : function(e) {
              let target = e.target;
              this.buttonHandler(target.value);//Value of button
+
           }
         };
 
@@ -78,19 +79,23 @@ class Calculator {
     //
     buttonHandler(value)
     {
+
       document.getElementById("textRow").value += value;
-      if (value === 'C'){ // if clear clicked, will clear the display
-        document.getElementById("textRow").value="";
+      if (value == 'C')
+      { // if clear clicked, will clear the display
+        document.getElementById("textRow").value= "";
       }
-      if (value === '=')
+      if (value == ' + ' || value == ' - ' || value == ' * ' || value == ' / ')
       {
-        var x = document.getElementById("textRow").value;
-        var eq = eval(x);
-        document.getElementById("textRow").value = eq;
+        document.getElementById("textRow").value += " ";
+      }
+      if (value = ' = ') {
+
+        
+
       }
 
-
-    }
+  }
 
 
 
@@ -159,8 +164,8 @@ class Calculator {
 
 
 } // end of Calculator;
-// function answer(){
-//   var x = document.getElementById("textRow").value;
-//   x = eval("x");
-//   document.getElementById("textRow").value = x;
-// }
+function answer(){
+  var x = document.getElementById("textRow").value;
+  x = eval(x);
+  document.getElementById("textRow").value = x;
+}
