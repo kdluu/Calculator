@@ -4,6 +4,8 @@
 //
 
 //
+var memory = 0;
+var result = 0;
 class Calculator {
 
     constructor(elementId) {
@@ -38,9 +40,7 @@ class Calculator {
           memadd : {id: "memadd", type: "button", value: 'M+', onclick:""},
 
           memclear : {id: "memclear", type: "button", value:'MC', onclick:""},
-
-
-
+          memset : {id: "memset", type: "button", value:'MS', onclick:""},
           container : document.getElementById(elementId)
         };
 
@@ -72,33 +72,45 @@ class Calculator {
        this.View.container.onclick
           = this.Controller.viewClickHandler.bind(this);
     }
-
-
     //
     // Passing value of button to buttonHandler
     //
+    //var display = document.getElementById("textRow").value;
     buttonHandler(value)
     {
-
-      document.getElementById("textRow").value += value;
-      if (value == 'C')
-      { // if clear clicked, will clear the display
-        document.getElementById("textRow").value= "";
-      }
-      if (value == ' + ' || value == ' - ' || value == ' * ' || value == ' / ')
-      {
-        document.getElementById("textRow").value += " ";
-      }
-      if (value = ' = ') {
-
-        
-
+      switch (value) {
+        case "=":
+          break;
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+          document.getElementById("textRow").value += " ";
+          break;
+        case 'C':
+          document.getElementById("textRow").value = " ";
+          break;
+        case 'MR':
+          document.getElementById("textRow").value = memory;
+          break;
+        case 'M+':
+          document.getElementById("textRow").value = parseInt(document.getElementById("textRow").value) + parseInt(memory);
+          break;
+        case 'M-':
+          document.getElementById("textRow").value = parseInt(document.getElementById("textRow").value) - parseInt(memory);
+          break;
+        case 'MS':
+          memory = document.getElementById("textRow").value;
+          break;
+        case 'MC':
+          memory = 0;
+          document.getElementById("textRow").value = " "
+          break;
+        default:
+          document.getElementById("textRow").value += value;
       }
 
   }
-
-
-
     //
     // createHTMLforView
     // Utility. creates HTML formatted text for the entire view
@@ -106,7 +118,7 @@ class Calculator {
     createHTMLforView()
     {
       var s;
-      s = "<table id=\"myTable\" border=2>"
+      s = "<table id=\"myTable\" border=2 >"
 
       // row for results
       s += "<tr><td>" + this.createHTMLforElement(this.View.textRow) + "</td></tr>";
@@ -140,6 +152,7 @@ class Calculator {
       s += this.createHTMLforElement(this.View.memadd);
       s += "<br>";
       s += this.createHTMLforElement(this.View.memclear);
+      s += this.createHTMLforElement(this.View.memset);
 
 
       s += "</tr></td></table>";
@@ -164,8 +177,24 @@ class Calculator {
 
 
 } // end of Calculator;
+//Function to calculate the result of textRow when click =
 function answer(){
   var x = document.getElementById("textRow").value;
   x = eval(x);
   document.getElementById("textRow").value = x;
 }
+
+
+
+// function memoryreccall(){
+//   document.getElementById("textRow").value = memory;
+// }
+// function memoryadd(addm){
+//   memory = parseInt(document.getElementById("textRow").value)+parseInt(memory);
+// }
+// function memorysub(){
+//   memory -= document.getElementById("textRow").value;
+// }
+// function memoryclear(){
+//   memory = 0;
+// }
