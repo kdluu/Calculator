@@ -183,18 +183,3 @@ function answer(){
   x = eval(x);
   document.getElementById("textRow").value = x;
 }
-
-
-
-// function memoryreccall(){
-//   document.getElementById("textRow").value = memory;
-// }
-// function memoryadd(addm){
-//   memory = parseInt(document.getElementById("textRow").value)+parseInt(memory);
-// }
-// function memorysub(){
-//   memory -= document.getElementById("textRow").value;
-// }
-// function memoryclear(){
-//   memory = 0;
-// }
