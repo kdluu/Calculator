@@ -6,7 +6,7 @@
 //
 var memory = 0;
 var result = 0;
-class Calculator {
+class BinCalculator {
 
     constructor(elementId) {
         this.Model = {
@@ -14,10 +14,10 @@ class Calculator {
         };
 
         this.View = {
-          textRow : {id: "textRow", type: "text", value: "", onclick:""},
+          textRow1 : {id: "textRow1", type: "text", value: "", onclick:""},
           button7 : {id: "button7", type: "button", value: 7, onclick:""},
           button8 : {id: "button8", type: "button", value: 8, onclick:""},
-          button9 : {id: "button9", type: "button", value: 9, onclick:""},
+          button9 : {id: "button9", type: "button", value: 1001, onclick:""},
           addittion : {id: "operation", type: "button", value: ' + ', onclick:""},
 
           button4 : {id: "button4", type: "button", value: 4, onclick:""},
@@ -77,7 +77,7 @@ class Calculator {
     //
     // Passing value of button to buttonHandler
     //
-    //var display = document.getElementById("textRow").value;
+    //var display = document.getElementById("textRow1").value;
     buttonHandler(value)
     {
       switch (value) {
@@ -87,29 +87,29 @@ class Calculator {
         case '-':
         case '*':
         case '/':
-          document.getElementById("textRow").value += " ";
+          document.getElementById("textRow1").value += " ";
           break;
         case 'C':
-          document.getElementById("textRow").value = " ";
+          document.getElementById("textRow1").value = " ";
           break;
         case 'MR':
-          document.getElementById("textRow").value = memory;
+          document.getElementById("textRow1").value = memory;
           break;
         case 'M+':
-          document.getElementById("textRow").value = parseInt(document.getElementById("textRow").value) + parseInt(memory);
+          document.getElementById("textRow1").value = parseInt(document.getElementById("textRow1").value) + parseInt(memory);
           break;
         case 'M-':
-          document.getElementById("textRow").value = parseInt(document.getElementById("textRow").value) - parseInt(memory);
+          document.getElementById("textRow1").value = parseInt(document.getElementById("textRow1").value) - parseInt(memory);
           break;
         case 'MS':
-          memory = document.getElementById("textRow").value;
+          memory = document.getElementById("textRow1").value;
           break;
         case 'MC':
           memory = 0;
-          document.getElementById("textRow").value = " ";
+          document.getElementById("textRow1").value = " ";
           break;
         default:
-          document.getElementById("textRow").value += value;
+          document.getElementById("textRow1").value += value;
       }
 
   }
@@ -120,10 +120,10 @@ class Calculator {
     createHTMLforView()
     {
       var s;
-      s = "<table id=\"myTable\" border=2 >"
+      s = "<table id=\"myTableBin\" border=2 >"
 
       // row for results
-      s += "<tr><td>" + this.createHTMLforElement(this.View.textRow) + "</td></tr>";
+      s += "<tr><td>" + this.createHTMLforElement(this.View.textRow1) + "</td></tr>";
       s += "<tr><td>";
 
       // thisulator buttons
@@ -179,9 +179,9 @@ class Calculator {
 
 
 } // end of Calculator;
-//Function to calculate the result of textRow when click =
+//Function to calculate the result of textRow1 when click =
 function answer(){
-  var x = document.getElementById("textRow").value;
+  var x = document.getElementById("textRow1").value;
   x = eval(x);
-  document.getElementById("textRow").value = x;
+  document.getElementById("textRow1").value = x;
 }
