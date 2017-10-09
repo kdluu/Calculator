@@ -15,24 +15,24 @@ class BinCalculator {
 
         this.View = {
           textRow1 : {id: "textRow1", type: "text", value: "", onclick:""},
-          button7 : {id: "button7", type: "button", value: 7, onclick:""},
-          button8 : {id: "button8", type: "button", value: 8, onclick:""},
-          button9 : {id: "button9", type: "button", value: 1001, onclick:""},
+          button7 : {id: "button7", type: "button", value: '0111', onclick:""},
+          button8 : {id: "button8", type: "button", value: '1000', onclick:""},
+          button9 : {id: "button9", type: "button", value: '1001', onclick:""},
           addittion : {id: "operation", type: "button", value: ' + ', onclick:""},
 
-          button4 : {id: "button4", type: "button", value: 4, onclick:""},
-          button5 : {id: "button5", type: "button", value: 5, onclick:""},
-          button6 : {id: "button6", type: "button", value: 6, onclick:""},
+          button4 : {id: "button4", type: "button", value: '0100', onclick:""},
+          button5 : {id: "button5", type: "button", value: '0101', onclick:""},
+          button6 : {id: "button6", type: "button", value: '0110', onclick:""},
           substraction : {id: "operation", type: "button", value:' - ', onclick:""},
 
-          button1 : {id: "button1", type: "button", value: 1, onclick:""},
-          button2 : {id: "button2", type: "button", value: 2, onclick:""},
-          button3 : {id: "button3", type: "button", value: 3, onclick:""},
+          button1 : {id: "button1", type: "button", value: '0001', onclick:""},
+          button2 : {id: "button2", type: "button", value: '0010', onclick:""},
+          button3 : {id: "button3", type: "button", value: '0011', onclick:""},
           multiply : {id: "operation", type: "button", value:' * ', onclick:""},
 
-          button0 : {id: "button0", type: "button", value: 0, onclick:""},
+          button0 : {id: "button0", type: "button", value: '0000', onclick:""},
           point : {id: "point", type: "button", value: '.', onclick:""},
-          equals : {id: "equals", type: "button", value: '=', onclick:"answer()"},
+          equals : {id: "equals", type: "button", value: '=', onclick:"answer1()"},
           division : {id: "operation", type: "button", value:' / ', onclick:""},
 
           clear : {id: "clear", type: "button", value: 'C', onclick:""},
@@ -160,8 +160,6 @@ class BinCalculator {
       s += "</tr></td></table>";
       return s;
     }
-
-
     //
     // createHTMLforElement
     // utility. creates html formatted text for an element
@@ -176,12 +174,49 @@ class BinCalculator {
       s += ">";
       return s;
     }
-
-
 } // end of Calculator;
 //Function to calculate the result of textRow1 when click =
-function answer(){
-  var x = document.getElementById("textRow1").value;
-  x = eval(x);
-  document.getElementById("textRow1").value = x;
+function answer1(){
+  var onScreen = document.getElementById("textRow1").value;
+  // +
+  if (onScreen.indexOf("+")!=-1)
+  {
+  var fields = onScreen.split('+');
+  var num1 = parseInt(fields[0],2);
+  var num2 = parseInt(fields[1],2);
+  var x = num1+num2;
+  console.log(x);//Check the calculation in decmimal before convert to binary
+  document.getElementById("textRow1").value = x.toString(2);
+  }
+  //-
+  if (onScreen.indexOf("-")!=-1)
+  {
+  var fields = onScreen.split('-');
+  var num1 = parseInt(fields[0],2);
+  var num2 = parseInt(fields[1],2);
+  var x = num1-num2;
+  console.log(x);//Check the calculation in decmimal before convert to binary
+  document.getElementById("textRow1").value = x.toString(2);
+  }
+  //*
+  if (onScreen.indexOf("*")!=-1)
+  {
+  var fields = onScreen.split('*');
+  var num1 = parseInt(fields[0],2);
+  var num2 = parseInt(fields[1],2);
+  var x = num1*num2;
+  console.log(x);//Check the calculation in decmimal before convert to binary
+  document.getElementById("textRow1").value = x.toString(2);
+  }
+  // '/'
+  if (onScreen.indexOf("/")!=-1)
+  {
+  var fields = onScreen.split('/');
+  var num1 = parseInt(fields[0],2);
+  var num2 = parseInt(fields[1],2);
+  var x = num1/num2;
+  console.log(x);//Check the calculation in decmimal before convert to binary
+  document.getElementById("textRow1").value = x.toString(2);
+  }
+  //document.getElementById("textRow1").value = x;
 }
