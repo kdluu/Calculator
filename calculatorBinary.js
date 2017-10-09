@@ -15,25 +15,23 @@ class BinCalculator {
 
         this.View = {
           textRow1 : {id: "textRow1", type: "text", value: "", onclick:""},
-          button7 : {id: "button7", type: "button", value: '0111', onclick:""},
-          button8 : {id: "button8", type: "button", value: '1000', onclick:""},
-          button9 : {id: "button9", type: "button", value: '1001', onclick:""},
+
           addittion : {id: "operation", type: "button", value: ' + ', onclick:""},
-
-          button4 : {id: "button4", type: "button", value: '0100', onclick:""},
-          button5 : {id: "button5", type: "button", value: '0101', onclick:""},
-          button6 : {id: "button6", type: "button", value: '0110', onclick:""},
           substraction : {id: "operation", type: "button", value:' - ', onclick:""},
-
-          button1 : {id: "button1", type: "button", value: '0001', onclick:""},
-          button2 : {id: "button2", type: "button", value: '0010', onclick:""},
-          button3 : {id: "button3", type: "button", value: '0011', onclick:""},
           multiply : {id: "operation", type: "button", value:' * ', onclick:""},
-
-          button0 : {id: "button0", type: "button", value: '0000', onclick:""},
-          point : {id: "point", type: "button", value: '.', onclick:""},
-          equals : {id: "equals", type: "button", value: '=', onclick:"answer1()"},
           division : {id: "operation", type: "button", value:' / ', onclick:""},
+
+          button1 : {id: "button1", type: "button", value: '1', onclick:""},
+          button0 : {id: "button0", type: "button", value: '0', onclick:""},
+
+          equals : {id: "equals", type: "button", value: '=', onclick:"answer1()"},
+          mod :{ id: "binaryop", type: "button", value: '%', onclick:""},
+          sl :{ id: "binaryop", type: "button", value: '<<', onclick:""},
+          sr :{ id: "binaryop", type: "button", value: '>>', onclick:""},
+
+          binAND :{ id: "binaryop", type: "button", value: 'AND', onclick:""},
+          binOR :{ id: "binaryop", type: "button", value: 'OR', onclick:""},
+          binNOT :{ id: "binaryop", type: "button", value: 'NOT', onclick:""},
 
           clear : {id: "clear", type: "button", value: 'C', onclick:""},
           memrecall : {id: "memrecall", type: "button", value: 'MR', onclick:""},
@@ -42,6 +40,7 @@ class BinCalculator {
 
           memclear : {id: "memclear", type: "button", value:'MC', onclick:""},
           memset : {id: "memset", type: "button", value:'MS', onclick:""},
+
           container : document.getElementById(elementId)
         };
 
@@ -87,6 +86,12 @@ class BinCalculator {
         case '-':
         case '*':
         case '/':
+        case '%':
+        case '<<':
+        case '>>':
+        case 'AND':
+        case 'OR':
+        case 'NOT':
           document.getElementById("textRow1").value += " ";
           break;
         case 'C':
@@ -127,35 +132,33 @@ class BinCalculator {
       s += "<tr><td>";
 
       // thisulator buttons
-      s += this.createHTMLforElement(this.View.button7);
-      s += this.createHTMLforElement(this.View.button8);
-      s += this.createHTMLforElement(this.View.button9);
+      //operation
       s += this.createHTMLforElement(this.View.addittion);
-
-      s += "<br>";
-      s += this.createHTMLforElement(this.View.button4);
-      s += this.createHTMLforElement(this.View.button5);
-      s += this.createHTMLforElement(this.View.button6);
       s += this.createHTMLforElement(this.View.substraction);
-      s += "<br>";
-      s += this.createHTMLforElement(this.View.button1);
-      s += this.createHTMLforElement(this.View.button2);
-      s += this.createHTMLforElement(this.View.button3);
       s += this.createHTMLforElement(this.View.multiply);
-      s += "<br>";
-      s += this.createHTMLforElement(this.View.button0);
-      s += this.createHTMLforElement(this.View.point);
-      s += this.createHTMLforElement(this.View.equals);
       s += this.createHTMLforElement(this.View.division);
       s += "<br>";
-      s += this.createHTMLforElement(this.View.clear);
+      s += this.createHTMLforElement(this.View.mod);
+      s += this.createHTMLforElement(this.View.sl);
+      s += this.createHTMLforElement(this.View.sr);
+      s += this.createHTMLforElement(this.View.equals);
+      s += "<br>";
+      s += this.createHTMLforElement(this.View.binAND);
+      s += this.createHTMLforElement(this.View.binOR);
+      s += this.createHTMLforElement(this.View.binNOT);
+
+      s += "<br>";
       s += this.createHTMLforElement(this.View.memrecall);
       s += this.createHTMLforElement(this.View.memsub);
       s += this.createHTMLforElement(this.View.memadd);
-      s += "<br>";
       s += this.createHTMLforElement(this.View.memclear);
-      s += this.createHTMLforElement(this.View.memset);
+      s += "<br>";
 
+
+      s += this.createHTMLforElement(this.View.button0);
+      s += this.createHTMLforElement(this.View.button1);
+      s += this.createHTMLforElement(this.View.clear);
+      s += this.createHTMLforElement(this.View.memset);
 
       s += "</tr></td></table>";
       return s;
