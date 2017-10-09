@@ -1,6 +1,16 @@
 // BINARYCALCULATOR.JS
 var memory = 0;
 var result = 0;
+document.addEventListener("click", function (e) {
+  var level = 0;
+  for (var element = e.target; element; element = element.parentNode) {
+    if (element.id === 'myTable' || element.id === 'myTableBin') {
+      return;
+    }
+    level++;
+  }
+  alert("Please click on Calculator");
+});
 class BinCalculator {
 
     constructor(elementId) {
