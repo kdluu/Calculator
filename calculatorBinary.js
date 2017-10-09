@@ -1,9 +1,4 @@
-// CALCULATOR.JS
-//
-//
-//
-
-//
+// BINARYCALCULATOR.JS
 var memory = 0;
 var result = 0;
 class BinCalculator {
@@ -29,17 +24,11 @@ class BinCalculator {
           sl :{ id: "binaryop", type: "button", value: '<<', onclick:""},
           sr :{ id: "binaryop", type: "button", value: '>>', onclick:""},
 
-          binAND :{ id: "binaryop", type: "button", value: 'AND', onclick:""},
-          binOR :{ id: "binaryop", type: "button", value: 'OR', onclick:""},
-          binNOT :{ id: "binaryop", type: "button", value: 'NOT', onclick:""},
+          ANDbin :{ id: "binaryop", type: "button", value: ' AND ', onclick:""},
+          ORbin :{ id: "binaryop", type: "button", value: ' OR ', onclick:""},
+          NOTbin :{ id: "binaryop", type: "button", value: ' NOT ', onclick:""},
 
           clear : {id: "clear", type: "button", value: 'C', onclick:""},
-          memrecall : {id: "memrecall", type: "button", value: 'MR', onclick:""},
-          memsub : {id: "memsub", type: "button", value: 'M-', onclick:""},
-          memadd : {id: "memadd", type: "button", value: 'M+', onclick:""},
-
-          memclear : {id: "memclear", type: "button", value:'MC', onclick:""},
-          memset : {id: "memset", type: "button", value:'MS', onclick:""},
 
           container : document.getElementById(elementId)
         };
@@ -82,35 +71,7 @@ class BinCalculator {
       switch (value) {
         case "=":
           break;
-        case '+':
-        case '-':
-        case '*':
-        case '/':
-        case '%':
-        case '<<':
-        case '>>':
-        case 'AND':
-        case 'OR':
-        case 'NOT':
-          document.getElementById("textRow1").value += " ";
-          break;
         case 'C':
-          document.getElementById("textRow1").value = " ";
-          break;
-        case 'MR':
-          document.getElementById("textRow1").value = memory;
-          break;
-        case 'M+':
-          document.getElementById("textRow1").value = parseInt(document.getElementById("textRow1").value) + parseInt(memory);
-          break;
-        case 'M-':
-          document.getElementById("textRow1").value = parseInt(document.getElementById("textRow1").value) - parseInt(memory);
-          break;
-        case 'MS':
-          memory = document.getElementById("textRow1").value;
-          break;
-        case 'MC':
-          memory = 0;
           document.getElementById("textRow1").value = " ";
           break;
         default:
@@ -141,24 +102,17 @@ class BinCalculator {
       s += this.createHTMLforElement(this.View.mod);
       s += this.createHTMLforElement(this.View.sl);
       s += this.createHTMLforElement(this.View.sr);
-      s += this.createHTMLforElement(this.View.equals);
-      s += "<br>";
-      s += this.createHTMLforElement(this.View.binAND);
-      s += this.createHTMLforElement(this.View.binOR);
-      s += this.createHTMLforElement(this.View.binNOT);
-
-      s += "<br>";
-      s += this.createHTMLforElement(this.View.memrecall);
-      s += this.createHTMLforElement(this.View.memsub);
-      s += this.createHTMLforElement(this.View.memadd);
-      s += this.createHTMLforElement(this.View.memclear);
+      s += this.createHTMLforElement(this.View.ANDbin);
       s += "<br>";
 
-
+      s += this.createHTMLforElement(this.View.ORbin);
+      s += this.createHTMLforElement(this.View.NOTbin);
+      s += this.createHTMLforElement(this.View.clear);
+      s += "<br>";
       s += this.createHTMLforElement(this.View.button0);
       s += this.createHTMLforElement(this.View.button1);
-      s += this.createHTMLforElement(this.View.clear);
-      s += this.createHTMLforElement(this.View.memset);
+      s += this.createHTMLforElement(this.View.equals);
+
 
       s += "</tr></td></table>";
       return s;
@@ -184,42 +138,104 @@ function answer1(){
   // +
   if (onScreen.indexOf("+")!=-1)
   {
-  var fields = onScreen.split('+');
-  var num1 = parseInt(fields[0],2);
-  var num2 = parseInt(fields[1],2);
-  var x = num1+num2;
-  console.log(x);//Check the calculation in decmimal before convert to binary
-  document.getElementById("textRow1").value = x.toString(2);
-  }
+    var fields = onScreen.split('+');
+    var num1 = parseInt(fields[0],2);
+    var num2 = parseInt(fields[1],2);
+    var x = num1+num2;
+    console.log(x);//Check the calculation in decmimal before convert to binary
+    document.getElementById("textRow1").value = x.toString(2);
+    }
   //-
   if (onScreen.indexOf("-")!=-1)
   {
-  var fields = onScreen.split('-');
-  var num1 = parseInt(fields[0],2);
-  var num2 = parseInt(fields[1],2);
-  var x = num1-num2;
-  console.log(x);//Check the calculation in decmimal before convert to binary
-  document.getElementById("textRow1").value = x.toString(2);
+    var fields = onScreen.split('-');
+    var num1 = parseInt(fields[0],2);
+    var num2 = parseInt(fields[1],2);
+    var x = num1-num2;
+    console.log(x);//Check the calculation in decmimal before convert to binary
+    document.getElementById("textRow1").value = x.toString(2);
   }
   //*
   if (onScreen.indexOf("*")!=-1)
   {
-  var fields = onScreen.split('*');
-  var num1 = parseInt(fields[0],2);
-  var num2 = parseInt(fields[1],2);
-  var x = num1*num2;
-  console.log(x);//Check the calculation in decmimal before convert to binary
-  document.getElementById("textRow1").value = x.toString(2);
+    var fields = onScreen.split('*');
+    var num1 = parseInt(fields[0],2);
+    var num2 = parseInt(fields[1],2);
+    var x = num1*num2;
+    console.log(x);//Check the calculation in decmimal before convert to binary
+    document.getElementById("textRow1").value = x.toString(2);
   }
   // '/'
   if (onScreen.indexOf("/")!=-1)
   {
-  var fields = onScreen.split('/');
-  var num1 = parseInt(fields[0],2);
-  var num2 = parseInt(fields[1],2);
-  var x = num1/num2;
-  console.log(x);//Check the calculation in decmimal before convert to binary
-  document.getElementById("textRow1").value = x.toString(2);
+    var fields = onScreen.split('/');
+    var num1 = parseInt(fields[0],2);
+    var num2 = parseInt(fields[1],2);
+    var x = num1/num2;
+    console.log(x);//Check the calculation in decmimal before convert to binary
+    document.getElementById("textRow1").value = x.toString(2);
   }
-  //document.getElementById("textRow1").value = x;
+  // % mod
+  if (onScreen.indexOf("%")!=-1)
+  {
+    var fields = onScreen.split('%');
+    var num1 = parseInt(fields[0],2);
+    var num2 = parseInt(fields[1],2);
+    var x = num1%num2;
+    console.log(num1);
+    console.log(num2);
+    console.log(x);//Check the calculation in decmimal before convert to binary
+    document.getElementById("textRow1").value = x.toString(2);
+  }
+  // Left shift
+  // IDEA: The idea of left shift is convert the number to decimal and use builtin
+  // operation <<, then convert the result back to binary
+  if (onScreen.indexOf("<")!=-1)
+  {
+    var fields = onScreen.split('%');
+    var num1 = parseInt(fields[0],2);
+    var x = num1 << 1;
+    // console.log(num1);
+    // console.log(x);//Check the calculation in decmimal before convert to binary
+    document.getElementById("textRow1").value = x.toString(2);
+  }
+  // Right shift
+  // IDEA: The idea of left shift is convert the number to decimal and use builtin
+  // operation >>, then convert the result back to binary
+  if (onScreen.indexOf(">")!=-1)
+  {
+    var fields = onScreen.split('%');
+    var num1 = parseInt(fields[0],2);
+    var x = num1 >> 1;
+    document.getElementById("textRow1").value = x.toString(2);
+  }
+  // ANDbin
+  if (onScreen.indexOf("AND")!=-1)
+  {
+    var fields = onScreen.split('AND');
+    var num1 = parseInt(fields[0],2);
+    var num2 = parseInt(fields[1],2);
+    var x = num1 & num2;
+    document.getElementById("textRow1").value = x.toString(2);
+  }
+  // ORbin
+  if (onScreen.indexOf("OR")!=-1)
+  {
+    var fields = onScreen.split('OR');
+    var num1 = parseInt(fields[0],2);
+    var num2 = parseInt(fields[1],2);
+    var x = num1 | num2;
+    document.getElementById("textRow1").value = x.toString(2);
+  }
+  // NOTbin
+  if (onScreen.indexOf("NOT")!=-1)
+  {
+    var fields = onScreen.split('NOT');
+    var l = fields[0];
+    var le = l.trim().length;
+    var num1 = parseInt(fields[0],2);
+    var x = ~ num1 & (Math.pow(2,le)-1);
+    document.getElementById("textRow1").value = x.toString(2);
+  }
+
 }

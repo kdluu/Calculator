@@ -145,18 +145,16 @@ class Calculator {
       s += "<br>";
       s += this.createHTMLforElement(this.View.button0);
       s += this.createHTMLforElement(this.View.point);
-      s += this.createHTMLforElement(this.View.equals);
+      s += this.createHTMLforElement(this.View.memclear);
       s += this.createHTMLforElement(this.View.division);
       s += "<br>";
-      s += this.createHTMLforElement(this.View.clear);
+      s += this.createHTMLforElement(this.View.memset);
       s += this.createHTMLforElement(this.View.memrecall);
       s += this.createHTMLforElement(this.View.memsub);
       s += this.createHTMLforElement(this.View.memadd);
       s += "<br>";
-      s += this.createHTMLforElement(this.View.memclear);
-      s += this.createHTMLforElement(this.View.memset);
-
-
+      s += this.createHTMLforElement(this.View.clear);
+      s += this.createHTMLforElement(this.View.equals);
       s += "</tr></td></table>";
       return s;
     }
